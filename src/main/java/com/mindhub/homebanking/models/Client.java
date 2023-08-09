@@ -39,9 +39,6 @@ public class Client {
     }
 
 
-
-
-
     public Set<Account> getAccounts() {
         return accounts;
     }
