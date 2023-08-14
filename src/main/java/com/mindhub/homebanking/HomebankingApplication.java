@@ -22,7 +22,8 @@ public class HomebankingApplication {
 									  AccountRepository accountRepository,
 									  TransactionRepository transactionRepository,
 									  LoanRepository loanRepository,
-									  ClientLoanRepository clientLoanRepository){
+									  ClientLoanRepository clientLoanRepository,
+									  CardRepository cardRepository){
 		return (args) ->{
 			//creo y guardo clientes
 			Client client1 = new Client("123456", "Melba", "Morel", "melba@mindhub.com");
@@ -57,13 +58,7 @@ public class HomebankingApplication {
 			loanRepository.save(Personal);
 			loanRepository.save(Automotriz);
 
-
 			//crea las entidades ClientLoan necesarias para indicar que el cliente Melba tenga:
-			//Préstamo Hipotecario, 400.000, 60 cuotas.
-			//Préstamo Personal, 50.000, 12 cuotas
-			//El otro cliente debe tener:
-			//Préstamo Personal, 100.000, 24 cuotas
-			//Préstamo Automotriz, 200.000, 36 cuotas
 			ClientLoan Melba1 = new ClientLoan(400000.0, List.of(60), client1, Hipotecario);
 			ClientLoan Melba2 = new ClientLoan(50000.0, List.of(12),client1, Personal);
 			ClientLoan Guillermo1 = new ClientLoan(100000.0, List.of(24), client2, Personal);
@@ -72,6 +67,20 @@ public class HomebankingApplication {
 			clientLoanRepository.save(Melba2);
 			clientLoanRepository.save(Guillermo1);
 			clientLoanRepository.save(Guillermo2);
+
+			//agrego tarjetas al cliente Melva
+			Card Card1 = new Card(client1, client1.toString(), CardType.DEBIT, CardColor.GOLD,
+					"2363-5252-8545-5254", 562, LocalDate.now(), LocalDate.now().plusYears(5));
+			Card Card2 = new Card(client1, client1.toString(), CardType.CREDIT, CardColor.TITANIUM,
+					"8544-2351-5462-1147", 687, LocalDate.now(), LocalDate.now().plusYears(5));
+			Card Card3 = new Card(client2, "Guillermo Guevara", CardType.CREDIT, CardColor.SILVER,
+					"5696-8585-7452-1569", 548, LocalDate.now(), LocalDate.now().plusYears(5) );
+			Card Card4 = new Card(client1, client1.toString(), CardType.CREDIT, CardColor.SILVER,
+					"5454-8595.7474-8547", 896, LocalDate.now(), LocalDate.now().plusYears(5));
+			cardRepository.save(Card1);
+			cardRepository.save(Card2);
+			cardRepository.save(Card3);
+			cardRepository.save(Card4);
 
 
 

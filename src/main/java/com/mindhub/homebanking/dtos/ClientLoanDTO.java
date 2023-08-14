@@ -17,14 +17,14 @@ public class ClientLoanDTO {
 
 
     public ClientLoanDTO(ClientLoan clientLoan) {
-    this.id = clientLoan.getId();
-    this.name = clientLoan.getLoan().getName();
-    this.loanId = clientLoan.getLoan().getId();
-    this.amount = clientLoan.getAmount();
-    this.payments = clientLoan.getPayments()
-            .stream()
-            .map(currentPayments -> new Integer(currentPayments))
-            .collect(Collectors.toList());
+        this.id = clientLoan.getId();
+        this.name = clientLoan.getLoan().getName();
+        this.loanId = clientLoan.getLoan().getId();
+        this.amount = clientLoan.getAmount();
+        this.payments = clientLoan.getPayments()
+                .stream()
+                .map(currentPayments -> new Integer(currentPayments))
+                .collect(Collectors.toList());
 
 
     }
