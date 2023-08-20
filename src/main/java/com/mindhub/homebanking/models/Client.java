@@ -1,6 +1,5 @@
 package com.mindhub.homebanking.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -28,18 +27,19 @@ public class Client {
     private String lastName;
     private String email;
 
+    private String password;
 
 
     public Client() {
     }
 
-    public Client(String dni, String firstName, String lastName, String email) {
-        this.dni = dni;
+    public Client( String firstName, String lastName, String email, String password) {
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
     }
-
 
     public Set<ClientLoan> getLoans() {
         return clientLoans;
@@ -81,6 +81,8 @@ public class Client {
         card.setClient(this);
         cards.add(card);
     }
+
+
     @Override
     public String toString() {
         return firstName + " " + lastName;
@@ -122,6 +124,12 @@ public class Client {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
 

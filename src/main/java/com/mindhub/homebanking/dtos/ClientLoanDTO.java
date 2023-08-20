@@ -12,7 +12,7 @@ public class ClientLoanDTO {
 
     private long loanId;
     private double amount;
-    private List<Integer> payments;
+    private int payments;
     private String name;
 
 
@@ -21,11 +21,7 @@ public class ClientLoanDTO {
         this.name = clientLoan.getLoan().getName();
         this.loanId = clientLoan.getLoan().getId();
         this.amount = clientLoan.getAmount();
-        this.payments = clientLoan.getPayments()
-                .stream()
-                .map(currentPayments -> new Integer(currentPayments))
-                .collect(Collectors.toList());
-
+        this.payments = clientLoan.getPayments();
 
     }
 
@@ -41,7 +37,7 @@ public class ClientLoanDTO {
         return amount;
     }
 
-    public List<Integer> getPayments() {
+    public int getPayments() {
         return payments;
     }
 
