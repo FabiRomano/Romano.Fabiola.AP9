@@ -59,8 +59,7 @@ public class ClientController {
 
 
 
-    @Autowired
-    private WebAuthentication webAuthentication;
+
     @GetMapping("/clients/current")
     public ClientDTO getClientCurrentAll(Authentication authentication){
         return  new ClientDTO (clientRepository.findByEmail(authentication.getName()));

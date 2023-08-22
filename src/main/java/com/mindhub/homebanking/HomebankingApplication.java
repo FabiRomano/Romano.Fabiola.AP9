@@ -38,8 +38,10 @@ public class HomebankingApplication {
 			//creo y guardo clientes
 			Client client1 = new Client( "Melba", "Morel", "melba@mindhub.com", passwordEncoder.encode("123"));
 			Client client2 = new Client( "Guillermo", "Guevara", "guiGuevara@gmail", passwordEncoder.encode("321"));
+			Client clientAdmin = new Client("Fabi", "Romano", "fabiromano11@gmail.com", passwordEncoder.encode("555"));
 			clientRepository.save(client1);
 			clientRepository.save(client2);
+			clientRepository.save(clientAdmin);
 
 			//creo una cuenta y agrego mas cuentas con el metodo add
 			Account account1 = new Account( client1, "VIN001",LocalDate.now(), 5000);
