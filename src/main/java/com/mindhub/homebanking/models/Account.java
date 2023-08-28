@@ -35,8 +35,7 @@ public class Account {
     }
 
 
-    public Account(Client client, String number, LocalDate creationDate, double balance) {
-        this.client = client;
+    public Account( String number, LocalDate creationDate, double balance) {
         this.number = number;
         this.creationDate = creationDate;
         this.balance = balance;

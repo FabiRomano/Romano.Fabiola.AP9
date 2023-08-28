@@ -13,10 +13,6 @@ public class Card {
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="clientId")
-    private Client client;
-
     private String cardHolder;
     private CardType type;
     private CardColor color;
@@ -24,15 +20,18 @@ public class Card {
     private int cvv;
     private LocalDate fromDate = LocalDate.now();
     private LocalDate thruDate = LocalDate.now().plusYears(5);
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="clientId")
+    private Client client;
 
 
     public Card() {
     }
 
-    public Card(Client client, String cardHolder, CardType type,
+    public Card(String cardHolder, CardType type,
                 CardColor color, String number, int cvv,
                 LocalDate fromDate, LocalDate thruDate) {
-        this.client = client;
+
         this.cardHolder = cardHolder;
         this.type = type;
         this.color = color;

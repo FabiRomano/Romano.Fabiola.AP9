@@ -44,10 +44,11 @@ public class HomebankingApplication {
 			clientRepository.save(clientAdmin);
 
 			//creo una cuenta y agrego mas cuentas con el metodo add
-			Account account1 = new Account( client1, "VIN001",LocalDate.now(), 5000);
-			Account account2 = new Account(client1, "VIN002",LocalDate.now().plusDays(1), 7000);
+			Account account1 = new Account(  "VIN001",LocalDate.now(), 5000);
+			Account account2 = new Account("VIN002",LocalDate.now().plusDays(1), 7000);
 			client1.addAccount(account2);
-			Account account3 = new Account(client2, "VIN003",LocalDate.now().plusDays(1), 9000);
+			client1.addAccount(account1);
+			Account account3 = new Account("VIN003",LocalDate.now().plusDays(1), 9000);
 			client2.addAccount(account3);
 			accountRepository.save(account1);
 			accountRepository.save(account2);
@@ -93,17 +94,21 @@ public class HomebankingApplication {
 			clientLoanRepository.save(Guillermo2);
 
 			//agrego tarjetas al cliente Melva
-			Card Card1 = new Card(client1, client1.toString(), CardType.DEBIT, CardColor.GOLD,
+			Card Card1 = new Card(client1.toString(), CardType.DEBIT, CardColor.GOLD,
 					"2363-5252-8545-5254", generationCvv(), LocalDate.now(), LocalDate.now().plusYears(5));
-			Card Card2 = new Card(client1, client1.toString(), CardType.CREDIT, CardColor.TITANIUM,
+			Card Card2 = new Card( client1.toString(), CardType.CREDIT, CardColor.TITANIUM,
 					"8544-2351-5462-1147", generationCvv(), LocalDate.now(), LocalDate.now().plusYears(5));
-			Card Card3 = new Card(client2, "Guillermo Guevara", CardType.CREDIT, CardColor.SILVER,
+			Card Card3 = new Card( "Guillermo Guevara", CardType.CREDIT, CardColor.SILVER,
 					"5696-8585-7452-1569", 548, LocalDate.now(), LocalDate.now().plusYears(5) );
-			Card Card4 = new Card(client1, client1.toString(), CardType.CREDIT, CardColor.SILVER,
+			Card Card4 = new Card( client1.toString(), CardType.CREDIT, CardColor.SILVER,
 					"5454-8595.7474-8547", generationCvv(), LocalDate.now(), LocalDate.now().plusYears(5));
+			client1.addCard(Card1);
 			cardRepository.save(Card1);
+			client1.addCard(Card2);
 			cardRepository.save(Card2);
+			client1.addCard(Card3);
 			cardRepository.save(Card3);
+			client2.addCard(Card4);
 			cardRepository.save(Card4);
 
 

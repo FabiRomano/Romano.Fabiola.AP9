@@ -21,13 +21,14 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/web/admin/**", "/rest/**", "/h2.console/**").hasAuthority("ADMIN")
-                .antMatchers("/web/index.html/**", "/web/css/**","/web/img/**", "/web/js/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/login", "/api/logout").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
-                .antMatchers("/web/**").hasAnyAuthority("CLIENT")
-                .antMatchers("/api/clients").hasAuthority("ADMIN");
-
+                .antMatchers("/web/index.html", "/web/css/**","/web/img/**","/web/js/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/login","/api/clients").permitAll()
+                .antMatchers("/web/**","/api/accounts/**","/api/clients/current","/api/cards").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.POST,"/api/clients/current/accounts").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.POST,"/api/clients/current/cards").hasAuthority("CLIENT")
+                .antMatchers( "/rest/**").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/logout").hasAnyAuthority("CLIENT","ADMIN")
+                .anyRequest().denyAll();
 
 
         http.formLogin()

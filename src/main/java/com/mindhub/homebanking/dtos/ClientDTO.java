@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 public class ClientDTO {
 
     private long id;
-    private String  dni;
     private String firstName;
     private String lastName;
     private String email;
@@ -49,9 +48,6 @@ public class ClientDTO {
         return id;
     }
 
-    public String getDni() {
-        return dni;
-    }
 
     public String getFirstName() {
         return firstName;
