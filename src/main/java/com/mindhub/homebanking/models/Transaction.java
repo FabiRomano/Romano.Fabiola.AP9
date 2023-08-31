@@ -24,8 +24,7 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(Account account, TransactionType type, Double amount, String description, LocalDate date) {
-        this.account = account;
+    public Transaction( TransactionType type, Double amount, String description) {
         this.type = type;
         this.amount = amount;
         this.description = description;

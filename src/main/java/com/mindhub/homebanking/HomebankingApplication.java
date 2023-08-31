@@ -56,9 +56,9 @@ public class HomebankingApplication {
 
 
 			//creo transacciones y las guardo
-			Transaction transaction1 = new Transaction(account1, TransactionType.DEBIT, -50.455, "se retiro dinero", LocalDate.now());
+			Transaction transaction1 = new Transaction(TransactionType.DEBIT, -50.455, "se retiro dinero");
+			Transaction transaction2 = new Transaction( TransactionType.CREDIT, 100.000, "Prestamo");
 			account1.addTransaction(transaction1);
-			Transaction transaction2 = new Transaction(account2, TransactionType.CREDIT, 100.000, "Prestamo", LocalDate.now());
 			account2.addTransaction(transaction2);
 			transactionRepository.save(transaction1);
 			transactionRepository.save(transaction2);

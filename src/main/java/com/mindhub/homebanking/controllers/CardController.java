@@ -62,16 +62,13 @@ public class CardController {
                 return new ResponseEntity<>("Color already used", HttpStatus.BAD_REQUEST);
             }
         }
-
-
-        String numberCard;
+                String numberCard;
         do {
             Random random = new Random();
             numberCard = random.nextInt(9999) + " " + random.nextInt(9999) + " " + random.nextInt(9999) + " " + random.nextInt(9999);
-        } while (cardRepository.findCardByNumber(numberCard) != null);
+        }
+        while (cardRepository.findCardByNumber(numberCard) != null);
         int randomCvvNumber = new Random().nextInt(1000);
-
-
         Card card = new Card(client.getFirstName(), cardType, cardColor, numberCard, randomCvvNumber, LocalDate.now(), LocalDate.now().plusYears(5));
         client.addCard(card);
         cardRepository.save(card);
