@@ -15,7 +15,7 @@ public interface ClientService {
 
 
     //Trae clientDto por id
-    ClientDTO getClientById( Long id);
+    ClientDTO getClientById(Long id);
 
 
     //verificca el cliente con el email
