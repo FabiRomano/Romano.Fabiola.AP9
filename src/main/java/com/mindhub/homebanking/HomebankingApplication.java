@@ -67,9 +67,11 @@ public class HomebankingApplication {
 			Loan Hipotecario = new Loan("Hipotecario", 500000.0, List.of(12,24,36,48,60));
 			Loan Personal = new Loan("Personal", 1000000.0, List.of(6, 12, 24));
 			Loan Automotriz = new Loan("Automotriz", 300000.0, List.of(6,12 ,24,36));
+			Loan Pymes = new Loan("Pymes", 60000.0, List.of(2, 4, 6, 8));
 			loanRepository.save(Hipotecario);
 			loanRepository.save(Personal);
 			loanRepository.save(Automotriz);
+			loanRepository.save(Pymes);
 
 			//crea las entidades ClientLoan necesarias para indicar que el cliente Melba tenga:
 			ClientLoan Melba1 = new ClientLoan(400000.0,60);

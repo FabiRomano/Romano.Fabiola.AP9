@@ -29,6 +29,10 @@ public class ClientController {
 
     @Autowired
     private ClientRepository clientRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private AccountRepository accountRepository;
 
 
     @GetMapping("/clients")
@@ -45,11 +49,6 @@ public class ClientController {
     }
 
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private AccountRepository accountRepository;
     @PostMapping("/clients")
     public ResponseEntity<Object> register(@RequestParam String firstName,
                                            @RequestParam String lastName,

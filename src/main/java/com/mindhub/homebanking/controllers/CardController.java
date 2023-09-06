@@ -24,9 +24,9 @@ import java.util.stream.Collectors;
 public class CardController {
 
     @Autowired
-    ClientRepository clientRepository;
+   private ClientRepository clientRepository;
     @Autowired
-    CardRepository cardRepository;
+   private CardRepository cardRepository;
 
     @GetMapping("/cards")
     public List<CardDTO> getCards() {

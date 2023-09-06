@@ -1,29 +1,24 @@
 package com.mindhub.homebanking.controllers;
-
 import com.mindhub.homebanking.dtos.AccountDTO;
-import com.mindhub.homebanking.dtos.ClientDTO;
 import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
-import com.mindhub.homebanking.repositories.TransactionRepository;
-import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
-
 import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequestMapping("/api")
 public class AccountController {
 
+    @Autowired
+    private ClientRepository clientRepository;
     @Autowired
     private AccountRepository accountRepository;
     @GetMapping("/accounts")
@@ -40,8 +35,6 @@ public class AccountController {
     }
 
 
-    @Autowired
-    ClientRepository clientRepository;
     @GetMapping("/accounts/{id}")
     public AccountDTO getAccountById(@PathVariable Long id, Authentication authentication){
         Optional<Account> account = accountRepository.findById(id);
@@ -66,8 +59,14 @@ public class AccountController {
         }
 
 
+    @GetMapping("/clients/current/accounts")
+    public List<AccountDTO> getCurrentAccounts(Authentication authentication){
+        Client client = clientRepository.findByEmail(authentication.getName());
+        return client.getAccounts().stream().map(AccountDTO::new).collect(toList());
+    }
+
         @PostMapping("/clients/current/accounts")
-        public ResponseEntity<Object> createAccounts(@NotNull Authentication authentication){
+        public ResponseEntity<Object> createAccounts(Authentication authentication){
             Client clientAuth = clientRepository.findByEmail(authentication.getName());
             Set<Account> allAccounts =new HashSet<>();
             allAccounts = clientAuth.getAccounts();
@@ -88,11 +87,6 @@ public class AccountController {
 
         }
 
-    @GetMapping("/clients/current/accounts")
-    public List<AccountDTO> getCurrentAccounts(Authentication authentication){
-        Client client = clientRepository.findByEmail(authentication.getName());
-        return client.getAccounts().stream().map(AccountDTO::new).collect(toList());
-    }
 
     }
 
