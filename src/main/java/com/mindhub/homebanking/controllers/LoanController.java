@@ -5,10 +5,7 @@ import com.mindhub.homebanking.dtos.LoanApplicationDTO;
 import com.mindhub.homebanking.dtos.LoanDTO;
 import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.repositories.*;
-import com.mindhub.homebanking.services.AccountService;
-import com.mindhub.homebanking.services.ClientService;
-import com.mindhub.homebanking.services.LoanService;
-import com.mindhub.homebanking.services.TransactionService;
+import com.mindhub.homebanking.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +30,9 @@ public class LoanController {
 
     @Autowired
     private TransactionService transactionService;
+
+    @Autowired
+    private ClientLoanService clientLoanService;
 
 
     //trae una lista de LOANDTO
@@ -85,14 +85,17 @@ public class LoanController {
         ClientLoan clientLoan = new ClientLoan(requestedAmount, loanApplicationDTO.getPayments());
         client.addClientLoan(clientLoan);
         loan.addClientLoan(clientLoan);
+        clientLoanService.ClientLoanSave(clientLoan);
 
      //hago la transaccion y guardo el nuevo registro
         String description = loan.getName() + " Loan approved. ";
         Transaction transaction = new Transaction(TransactionType.CREDIT, requestedAmount, description);
+        toAccount.setBalance(requestedAmount);
         toAccount.addTransaction(transaction);
         clientService.clientSave(client);
         accountService.accountSave(toAccount);
         transactionService.transactionSave(transaction);
+
 
     return new ResponseEntity<>("the credit was successfully approved" , HttpStatus.CREATED);
 }

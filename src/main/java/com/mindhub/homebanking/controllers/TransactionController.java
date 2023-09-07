@@ -85,6 +85,10 @@ public class TransactionController {
         destinationAccount.addTransaction(destinationAccountTransaction);
         transactionService.transactionSave(destinationAccountTransaction);
 
+        // Actualiza los saldos de las cuentas
+        rootAccount.setBalance(rootAccount.getBalance() - amount);
+        destinationAccount.setBalance(destinationAccount.getBalance() + amount);
+
     //guardo los cambios en las cuentas
         accountService.accountSave(rootAccount);
         accountService.accountSave(destinationAccount);
