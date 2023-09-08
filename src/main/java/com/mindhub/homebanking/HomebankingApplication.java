@@ -16,18 +16,13 @@ import java.util.Random;
 @SpringBootApplication
 public class HomebankingApplication {
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {SpringApplication.run(HomebankingApplication.class, args);}
 
-		SpringApplication.run(HomebankingApplication.class, args);
 
-		//llamo el metodo "generar cvv con clase randon"
-		System.out.println("Cvv generado: " + generationCvv());
-	}
-
-	@Bean
+/*	@Bean
 	public CommandLineRunner initData(ClientRepository clientRepository,
 									  AccountRepository accountRepository,
 									  TransactionRepository transactionRepository,
@@ -113,20 +108,10 @@ public class HomebankingApplication {
 			client2.addCard(Card4);
 			cardRepository.save(Card4);
 
+			};
 
 
-
-		};
-
-
-	}
-
-	//metodo para generar un numero randon de 3 cifras, utilizando la clase "Randon"
-	public static int generationCvv(){
-		Random random = new Random();
-		int cvv = random.nextInt(900)+100;
-		return cvv;
-	}
+	}  */
 
 
 }
