@@ -4,6 +4,7 @@ import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.services.AccountService;
 import com.mindhub.homebanking.services.ClientService;
+import com.mindhub.homebanking.utils.CardsUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +35,7 @@ public class AccountController {
 
 
     //trae Cuenta por ID. verifica client autenticado
-    @RequestMapping("/accounts/{id}")
+    @GetMapping("/accounts/{id}")
     public ResponseEntity<Object>getAccount(@PathVariable Long id, Authentication authentication) {
         Client client = clientService.findByEmail(authentication.getName());
         Account account = accountService.findByID(id);
@@ -71,8 +72,7 @@ public class AccountController {
          else {
 
              String numberAccount;
-            Random random= new Random();
-            numberAccount = "VIN" + random.nextInt(90000000);
+            numberAccount = CardsUtils.generateRandomVIN();
             Account account = new Account(numberAccount, LocalDate.now(), 0);
             clientAuth.addAccount(account);
             accountService.accountSave(account);

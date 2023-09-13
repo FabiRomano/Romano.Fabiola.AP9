@@ -5,6 +5,7 @@ import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.services.AccountService;
 import com.mindhub.homebanking.services.ClientService;
+import com.mindhub.homebanking.utils.CardsUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Random;
 
 
 @RestController
@@ -73,8 +73,7 @@ public class ClientController {
 
             //genero numero random para nueva cuenta
             do {
-                Random random = new Random();
-                numAccount = "VIN-" + random.nextInt(90000000);
+                numAccount = CardsUtils.generateRandomVIN();
             } while (accountService.findByNumber(numAccount) != null);
 
             //creo cuenta nueva la agrego al cliente y guardo los nuevos registros.
