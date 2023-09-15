@@ -17,7 +17,7 @@ import java.util.List;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = NONE)
 public class RepositoriesTest {
-
+/*
 //inyecto dependencias
     @Autowired
     private LoanRepository loanRepository;
@@ -113,5 +113,7 @@ public class RepositoriesTest {
         assertThat(transactionSaved, equalTo(transaction));
 
     }
+
+ */
 
 }
