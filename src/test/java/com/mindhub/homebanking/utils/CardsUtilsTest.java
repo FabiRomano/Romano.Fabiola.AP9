@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class CardsUtilsTest {
     @Autowired
     private CardService cardService;
-/*
+
 
     //Test unitarios
 
@@ -92,6 +92,5 @@ class CardsUtilsTest {
         assertNotEquals(cvvNumber1, cvvNumber2);
     }
 
-*/
 
 }
