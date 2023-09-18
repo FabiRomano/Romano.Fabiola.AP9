@@ -15,7 +15,7 @@ class CardsUtilsTest {
     @Autowired
     private CardService cardService;
 
-/*
+
     //Test unitarios
 
     //******NumerAcount con VIN******
@@ -91,6 +91,5 @@ class CardsUtilsTest {
         int cvvNumber2 = CardsUtils.generateRandomCVV();
         assertNotEquals(cvvNumber1, cvvNumber2);
     }
-*/
 
 }

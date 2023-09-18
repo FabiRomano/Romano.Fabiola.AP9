@@ -2,6 +2,7 @@ package com.mindhub.homebanking;
 
 import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.repositories.*;
+import com.mindhub.homebanking.utils.CardsUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,9 +21,9 @@ public class HomebankingApplication {
 //	private PasswordEncoder passwordEncoder;
 
 	public static void main(String[] args) {SpringApplication.run(HomebankingApplication.class, args);}
+/*
 
-
-/*	@Bean
+	@Bean
 	public CommandLineRunner initData(ClientRepository clientRepository,
 									  AccountRepository accountRepository,
 									  TransactionRepository transactionRepository,
@@ -92,13 +93,13 @@ public class HomebankingApplication {
 
 			//agrego tarjetas al cliente Melva
 			Card Card1 = new Card(client1.toString(), CardType.DEBIT, CardColor.GOLD,
-					"2363-5252-8545-5254", generationCvv(), LocalDate.now(), LocalDate.now().plusYears(5));
+					"2363-5252-8545-5254", CardsUtils.generateRandomCVV(), LocalDate.now(), LocalDate.now().plusYears(5));
 			Card Card2 = new Card( client1.toString(), CardType.CREDIT, CardColor.TITANIUM,
-					"8544-2351-5462-1147", generationCvv(), LocalDate.now(), LocalDate.now().plusYears(5));
+					"8544-2351-5462-1147", CardsUtils.generateRandomCVV(), LocalDate.now(), LocalDate.now().plusYears(5));
 			Card Card3 = new Card( "Guillermo Guevara", CardType.CREDIT, CardColor.SILVER,
 					"5696-8585-7452-1569", 548, LocalDate.now(), LocalDate.now().plusYears(5) );
 			Card Card4 = new Card( client1.toString(), CardType.CREDIT, CardColor.SILVER,
-					"5454-8595.7474-8547", generationCvv(), LocalDate.now(), LocalDate.now().plusYears(5));
+					"5454-8595.7474-8547", CardsUtils.generateRandomCVV(), LocalDate.now(), LocalDate.now().plusYears(5));
 			client1.addCard(Card1);
 			cardRepository.save(Card1);
 			client1.addCard(Card2);
@@ -111,7 +112,7 @@ public class HomebankingApplication {
 			};
 
 
-	}  */
+	}
 
-
+*/
 }
